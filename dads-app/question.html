@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Dad 💙</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      transition: background 1s ease;
+      background: linear-gradient(135deg, #0a1931, #112d4e);
+    }
+
+    /* Floating stickers */
+    .float {
+      position: fixed;
+      animation: floatUp 6s linear infinite;
+      font-size: 2rem;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+
+    /* Flip cards */
+    .flip-card {
+      perspective: 1000px;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+
+    .flip-card:hover .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .flip-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+
+    .flip-back {
+      background: #1e40af;
+      color: white;
+      transform: rotateY(180deg);
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center text-white p-4">
+
+<h1 class="text-2xl sm:text-3xl font-bold mb-4 text-center">Dad,Can I be your valentine? 😂💙</h1>
+
+<!-- IMAGE MEMORIES -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+
+  <!-- CARD 1 -->
+  <div class="flip-card w-40 h-40 sm:w-52 sm:h-52">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDdpNWY2bTN0MTBmNjJmd3k2MnVodXdtNXBpbWdkZG85ZmphNHBxcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/eHQe5HtaiyDGuMp5Wt/giphy.webp" />
+      </div>
+      <div class="flip-back">
+        Thank you for always protecting us 🤍
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="flip-card w-40 h-40 sm:w-52 sm:h-52">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDdpNWY2bTN0MTBmNjJmd3k2MnVodXdtNXBpbWdkZG85ZmphNHBxcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9v74tVCVV3dMsiuP2v/giphy.webp" />
+      </div>
+      <div class="flip-back">
+        You taught us strength and kindness 💪
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- QUESTION -->
+<p id="message" class="text-lg font-semibold mb-4 text-center">
+  Click YES or NO 👇
+</p>
+
+<div class="flex gap-4">
+  <button id="yesBtn" class="bg-green-600 px-6 py-2 rounded-lg text-white font-bold text-lg">
+    YES 💙
+  </button>
+
+  <button id="noBtn" class="bg-red-600 px-6 py-2 rounded-lg text-white font-bold text-lg">
+    NO 😈
+  </button>
+</div>
+
+<script>
+  let noCount = 0;
+  let yesSize = 1;
+
+  const messages = [
+    "Dad you can't say no 😭",
+    "We love you too much 💙",
+    "You are our superhero 🦸‍♂️",
+    "You deserve all the love 🥹",
+    "You are stuck with us forever 😂"
+  ];
+
+  const stickers = ["🚗", "✈️", "🚙", "🏍️", "🚕"];
+
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const msg = document.getElementById("message");
+
+  noBtn.addEventListener("click", () => {
+    noCount++;
+
+    // Change background to sky blue gradually
+    document.body.style.background = "linear-gradient(135deg, #1e3a8a, #60a5fa)";
+
+    // Show message
+    msg.innerText = messages[noCount % messages.length];
+
+    // Grow YES button
+    yesSize += 0.2;
+    yesBtn.style.transform = `scale(${yesSize})`;
+
+    // Floating sticker
+    const sticker = document.createElement("div");
+    sticker.className = "float";
+    sticker.style.left = Math.random() * 100 + "vw";
+    sticker.innerText = stickers[noCount % stickers.length];
+    document.body.appendChild(sticker);
+
+    setTimeout(() => sticker.remove(), 6000);
+  });
+
+  yesBtn.addEventListener("click", () => {
+    msg.innerText = "We love you Dad! Forever and always 💙💙💙";
+    alert("Dad is officially our hero forever 😭💙");
+  });
+</script>
+
+</body>
+</html>
