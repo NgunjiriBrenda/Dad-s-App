@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dad Appreciation 💙</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen relative overflow-hidden animate-bg flex flex-col items-center py-6">
+
+<!-- Floating Vehicles -->
+<div class="vehicles"></div>
+
+<main class="w-full max-w-4xl px-4 text-center animate-fadeIn z-10">
+
+<!-- Top Message -->
+<div class="bg-black/60 backdrop-blur-md rounded-2xl shadow-xl p-4 sm:p-6 mb-6 text-white max-w-xl mx-auto">
+    <p class="text-sm sm:text-lg leading-relaxed">
+        Dad, you are our hero, our teacher, and our biggest blessing 💙  
+        Tap the photos to see what your children feel about you.
+    </p>
+</div>
+
+<!-- FLIP PHOTO GRID -->
+<div class="grid grid-cols-2 gap-4 sm:gap-6 justify-items-center">
+
+<!-- CARD 1 -->
+<div class="flip-card w-40 h-40 sm:w-52 sm:h-52" onclick="flipCard(this)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="./src/assets/dad4.jpeg" class="w-full h-full object-cover rounded-xl shadow-lg">
+    </div>
+    <div class="flip-card-back flex items-center justify-center text-white text-xs sm:text-sm p-3 rounded-xl">
+      You’ve always protected us and made us feel safe. We love you Dad.
+    </div>
+  </div>
+</div>
+
+<!-- CARD 2 -->
+<div class="flip-card w-40 h-40 sm:w-52 sm:h-52" onclick="flipCard(this)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="./src/assets/dad5.jpeg" class="w-full h-full object-cover rounded-xl shadow-lg">
+    </div>
+    <div class="flip-card-back flex items-center justify-center text-white text-xs sm:text-sm p-3 rounded-xl">
+      Your laughter and advice shaped who we are today.
+    </div>
+  </div>
+</div>
+
+<!-- CARD 3 -->
+<div class="flip-card w-40 h-40 sm:w-52 sm:h-52" onclick="flipCard(this)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="./src/assets/dad6.jpeg" class="w-full h-full object-cover rounded-xl shadow-lg">
+    </div>
+    <div class="flip-card-back flex items-center justify-center text-white text-xs sm:text-sm p-3 rounded-xl">
+      No matter how big we grow, we’ll always be your children.
+    </div>
+  </div>
+</div>
+
+<!-- CARD 4 -->
+<div class="flip-card w-40 h-40 sm:w-52 sm:h-52" onclick="flipCard(this)">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="src/assets/dad7.jpeg" class="w-full h-full object-cover rounded-xl shadow-lg">
+    </div>
+    <div class="flip-card-back flex items-center justify-center text-white text-xs sm:text-sm p-3 rounded-xl">
+      Thank you for working hard so we could dream big.
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- NEXT BUTTON -->
+<a href="question.html"
+   class="mt-6 inline-block px-6 py-3 rounded-full bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 transition">
+   Click me  💌
+</a>
+
+</main>
+
+<style>
+/* Masculine animated background */
+body.animate-bg {
+  background: linear-gradient(135deg, #000000, #0f172a, #1e293b, #0a3d62);
+  background-size: 400% 400%;
+  animation: bgShift 15s ease infinite;
+}
+
+@keyframes bgShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+.animate-fadeIn {animation: fadeIn 1s ease forwards;}
+
+/* FLIP CARD MAGIC */
+.flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  transform: rotateY(180deg);
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Floating vehicles */
+.vehicles span {
+  position: absolute;
+  bottom: -40px;
+  font-size: 26px;
+  animation: floatUp 10s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes floatUp {
+  0% {transform: translateY(0); opacity: 0;}
+  20% {opacity: 0.8;}
+  100% {transform: translateY(-120vh) rotate(360deg); opacity: 0;}
+}
+</style>
+
+<script>
+// Flip card function
+function flipCard(card) {
+  card.classList.toggle("flipped");
+}
+
+// Floating vehicle emojis
+const vehicleIcons = ["🚗","🚙","✈️","🚕","🛻","🚚","🚜"];
+
+function createVehicle() {
+  const v = document.createElement("span");
+  v.innerHTML = vehicleIcons[Math.floor(Math.random()*vehicleIcons.length)];
+  v.style.left = Math.random()*100 + "%";
+  v.style.animationDuration = (Math.random()*5 + 8) + "s";
+  document.querySelector(".vehicles").appendChild(v);
+  setTimeout(() => v.remove(), 12000);
+}
+
+setInterval(createVehicle, 800);
+</script>
+
+</body>
+</html>
